@@ -179,6 +179,12 @@ if ( !function_exists( 'responsive_setup' ) ):
 			'admin-head-callback' => 'responsive_admin_header_style'
 		) );
 
+		/**
+		 * This featured enables selective refresh with widgets in the customizer.
+		 * @see https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
+		 **/
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
 		// gets included in the admin header
 		function responsive_admin_header_style() {
 			?>
