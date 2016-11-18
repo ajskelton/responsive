@@ -14,7 +14,22 @@ function responsive_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-
+	if ( isset( $wp_customize->selective_refresh ) ) {
+		$wp_customize->selective_refresh->add_partial( 'blogname', array(
+			'selector' => '.site-name a',
+			'container_inclusive' => false,
+			'render_callback' => function() {
+				echo bloginfo( 'name' );
+			}
+		) );
+		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+			'selector' => '.site-description',
+			'container_inclusive' => false,
+			'render_callback' => function() {
+				echo bloginfo( 'description' );
+			},
+		) );
+	}
 /*--------------------------------------------------------------
 	// Theme Elements
 --------------------------------------------------------------*/
