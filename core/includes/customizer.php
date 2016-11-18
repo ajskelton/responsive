@@ -84,12 +84,26 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[home_headline]',
 		'type'                  => 'text'
 	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[home_headline]', array(
+		'selector' 				=> '.featured-title',
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo $responsive_options['home_headline'];
+		}
+	) );
 	$wp_customize->add_setting( 'responsive_theme_options[home_subheadline]', array( 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'postMessage','default' => __( 'IS A WARM CUP', 'responsive' ), 'type' => 'option' ));
 	$wp_customize->add_control( 'res_home_subheadline', array(
 		'label'                 => __( 'Subheadline', 'responsive' ),
 		'section'               => 'home_page',
 		'settings'              => 'responsive_theme_options[home_subheadline]',
 		'type'                  => 'text'
+	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[home_subheadline]', array(
+		'selector' 				=> '.featured-subtitle',
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo $responsive_options['home_subheadline'];
+		}
 	) );
 	$wp_customize->add_setting( 'responsive_theme_options[home_content_area]',array( 'sanitize_callback' => 'responsive_sanitize_textarea', 'default' => __( 'Your title, subtitle and this very content is editable from Theme Option. Call to Action button and its destination link as well. Image on your right can be an image or even YouTube video if you like.', 'responsive' ), 'transport' => 'postMessage', 'type' => 'option') );
 	$wp_customize->add_control( 'res_home_content_area', array(
@@ -98,6 +112,13 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[home_content_area]',
 		'type'                  => 'textarea'
 	) );	
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[home_content_area]', array(
+		'selector' 				=> '#featured-content p',
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo do_shortcode( wpautop( $responsive_options['home_content_area'] ) );
+		}
+	) );
 	$wp_customize->add_setting( 'responsive_theme_options[cta_url]', array( 'sanitize_callback' => 'esc_url_raw','default' => '#nogo','transport' => 'postMessage', 'type' => 'option' ) );
 	$wp_customize->add_control( 'res_cta_url', array(
 		'label'                 => __( 'Call to Action (URL)', 'responsive' ),
@@ -105,7 +126,14 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[cta_url]',
 		'type'                  => 'text'
 	) );
-
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[cta_url]', array(
+		'selector' 				=> '.call-to-action a',
+		'container_inclusive' => true,
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo '<a href=' . $responsive_options['cta_url'] . ' class="blue button">' . $responsive_options['cta_text'] . '</a>';
+		}
+	) );
 	$wp_customize->add_setting( 'responsive_theme_options[cta_text]', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'Call to Action','transport' => 'postMessage', 'type' => 'option') );
 	$wp_customize->add_control( 'res_cta_text', array(
 		'label'                 => __( 'Call to Action (Text)', 'responsive' ),
@@ -113,7 +141,14 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[cta_text]',
 		'type'                  => 'text'
 	) );
-
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[cta_text]', array(
+		'selector' 				=> '.call-to-action a',
+		'container_inclusive' => true,
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo '<a href=' . $responsive_options['cta_url'] . ' class="blue button">' . $responsive_options['cta_text'] . '</a>';
+		}
+	) );
 	$wp_customize->add_setting( 'responsive_theme_options[featured_content]', array( 'sanitize_callback' => 'responsive_sanitize_textarea', 'type' => 'option' ) );
 	$wp_customize->add_control( 'res_featured_content', array(
 		'label'                 => __( 'Featured Content', 'responsive' ),
@@ -121,6 +156,13 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[featured_content]',
 		'type'                  => 'textarea',
 		'description'           => __( 'Paste your shortcode, video or image source', 'responsive' )
+	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[featured_content]', array(
+		'selector' 				=> '#featured-image',
+		'render_callback'		=> function() {
+			$responsive_options = responsive_get_options();
+			echo do_shortcode( wpautop( $featured_content ) );
+		}
 	) );
 
 
