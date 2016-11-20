@@ -30,6 +30,12 @@ function responsive_customize_register( $wp_customize ) {
 			},
 		) );
 	}
+	$wp_customize->get_setting('header_image')->transport 		= 'postMessage';
+	$wp_customize->selective_refresh->add_partial( 'header_image', array(
+		'selector' => '.wp-custom-header',
+		'container_includsive' => true,
+		'render_callback' => 'the_custom_header_markup',
+	) );
 /*--------------------------------------------------------------
 	// Theme Elements
 --------------------------------------------------------------*/
@@ -401,6 +407,12 @@ $wp_customize->add_section( 'footer_section', array(
 		'section'               => 'footer_section',
 		'settings'              => 'responsive_theme_options[poweredby_link]',
 		'type'                  => 'checkbox'
+	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[poweredby_link]', array(
+		'selector' 				=> '.powered',
+		'render_callback'		=> function() {
+
+		}
 	) );
 
 

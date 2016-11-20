@@ -66,10 +66,10 @@ if ( !defined( 'ABSPATH' ) ) {
 
 		<?php responsive_in_header(); // header hook ?>
 
-		<?php if ( get_header_image() != '' ) : ?>
+		<?php if ( the_custom_header_markup() ) : ?>
 
 			<div id="logo">
-				<a href="<?php echo esc_url(home_url( '/' )); ?>"><img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="<?php esc_attr(bloginfo( 'name' )); ?>"/></a>
+				<?php the_custom_header_markup(); ?>
 			</div><!-- end of #logo -->
 
 		<?php endif; // header image was removed ?>
