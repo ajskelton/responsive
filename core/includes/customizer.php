@@ -45,6 +45,10 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[breadcrumb]',
 		'type'                  => 'checkbox'
 	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[breadcrumb]', array(
+		'selector' 				=> '.breadcrumb-list',
+		'render_callback'		=> 'get_responsive_breadcrumb_lists',
+	) );
 	$wp_customize->add_setting( 'responsive_theme_options[cta_button]', array( 'sanitize_callback' => 'responsive_sanitize_checkbox', 'type' => 'option' ) );
 	$wp_customize->add_control( 'res_cta_button', array(
 		'label'                 => __( 'Disable Call to Action Button?', 'responsive' ),
@@ -74,6 +78,8 @@ function responsive_customize_register( $wp_customize ) {
 		'settings'              => 'responsive_theme_options[blog_post_title_text]',
 		'type'                  => 'text'
 	) );
+
+
 
 
 /*--------------------------------------------------------------
