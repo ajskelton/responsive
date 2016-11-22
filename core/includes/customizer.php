@@ -461,6 +461,9 @@ $wp_customize->add_section( 'footer_section', array(
 		'settings'              => 'responsive_theme_options[copyright_textbox]',
 		'type'                  => 'text'
 	) );
+	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[copyright_textbox]', array(
+		'selector' => '.copyright',
+	) );
 
 	$wp_customize->add_setting( 'responsive_theme_options[poweredby_link]', array( 'sanitize_callback' => 'responsive_sanitize_checkbox', 'type' => 'option' ) );
 	$wp_customize->add_control( 'res_poweredby_link', array(
@@ -470,10 +473,7 @@ $wp_customize->add_section( 'footer_section', array(
 		'type'                  => 'checkbox'
 	) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[poweredby_link]', array(
-		'selector' 				=> '.powered',
-		'render_callback'		=> function() {
-
-		}
+		'selector' => '.powered',
 	) );
 
 
