@@ -33,7 +33,7 @@ function responsive_customize_register( $wp_customize ) {
 	$wp_customize->get_setting('header_image')->transport 		= 'postMessage';
 	$wp_customize->selective_refresh->add_partial( 'header_image', array(
 		'selector' => '.wp-custom-header',
-		'container_includsive' => true,
+		'container_inclusive' => true,
 		'render_callback' => 'the_custom_header_markup',
 	) );
 /*--------------------------------------------------------------
