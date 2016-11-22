@@ -16,25 +16,25 @@ function responsive_customize_register( $wp_customize ) {
 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
-			'selector' => '.site-name a',
-			'container_inclusive' => false,
-			'render_callback' => function() {
+			'selector' 				=> '.site-name a',
+			'container_inclusive' 	=> false,
+			'render_callback'		=> function() {
 				echo bloginfo( 'name' );
 			}
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
-			'selector' => '.site-description',
-			'container_inclusive' => false,
-			'render_callback' => function() {
+			'selector' 				=> '.site-description',
+			'container_inclusive' 	=> false,
+			'render_callback' 		=> function() {
 				echo bloginfo( 'description' );
 			},
 		) );
 	}
 	$wp_customize->get_setting('header_image')->transport 		= 'postMessage';
 	$wp_customize->selective_refresh->add_partial( 'header_image', array(
-		'selector' => '.wp-custom-header',
-		'container_inclusive' => true,
-		'render_callback' => 'the_custom_header_markup',
+		'selector' 				=> '.wp-custom-header',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'the_custom_header_markup',
 	) );
 /*--------------------------------------------------------------
 	// Theme Elements
@@ -155,7 +155,7 @@ function responsive_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[cta_url]', array(
 		'selector' 				=> '.call-to-action a',
-		'container_inclusive' => true,
+		'container_inclusive' 	=> true,
 		'render_callback'		=> function() {
 			$responsive_options = responsive_get_options();
 			echo '<a href=' . $responsive_options['cta_url'] . ' class="blue button">' . $responsive_options['cta_text'] . '</a>';
@@ -231,23 +231,23 @@ function responsive_customize_register( $wp_customize ) {
 --------------------------------------------------------------*/
 
 	$wp_customize->add_section( 'responsive_social_media', array(
-		'title'             => __( 'Social Icons', 'responsive' ),
-		'priority'          => 40,
-		'description'       => __( 'Enter the URL to your account for each service for the icon to appear in the header.', 'responsive' ),
+		'title'             	=> __( 'Social Icons', 'responsive' ),
+		'priority'          	=> 40,
+		'description'       	=> __( 'Enter the URL to your account for each service for the icon to appear in the header.', 'responsive' ),
 	) );
 
 	// Add Twitter Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[twitter_uid]', array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_twitter', array(
-		'label'             => __( 'Twitter', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[twitter_uid]'
+		'label'             	=> __( 'Twitter', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[twitter_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[twitter_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 
@@ -255,154 +255,154 @@ function responsive_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'responsive_theme_options[facebook_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_facebook', array(
-		'label'             => __( 'Facebook', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[facebook_uid]'
+		'label'             	=> __( 'Facebook', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[facebook_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[facebook_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add LinkedIn Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[linkedin_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_linkedin', array(
-		'label'             => __( 'LinkedIn', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[linkedin_uid]'
+		'label'             	=> __( 'LinkedIn', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[linkedin_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[linkedin_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Youtube Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[youtube_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_youtube', array(
-		'label'             => __( 'YouTube', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[youtube_uid]'
+		'label'             	=> __( 'YouTube', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[youtube_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[youtube_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Google+ Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[googleplus_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_googleplus', array(
-		'label'             => __( 'Google+', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[googleplus_uid]'
+		'label'             	=> __( 'Google+', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[googleplus_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[googleplus_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add RSS Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[rss_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_rss', array(
-		'label'             => __( 'RSS Feed', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[rss_uid]'
+		'label'             	=> __( 'RSS Feed', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[rss_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[rss_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Instagram Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[instagram_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_instagram', array(
-		'label'             => __( 'Instagram', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[instagram_uid]'
+		'label'             	=> __( 'Instagram', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[instagram_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[instagram_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Pinterest Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[pinterest_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_pinterest', array(
-		'label'             => __( 'Pinterest', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[pinterest_uid]'
+		'label'             	=> __( 'Pinterest', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[pinterest_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[pinterest_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add StumbleUpon Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[stumbleupon_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_stumble', array(
-		'label'             => __( 'StumbleUpon', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[stumbleupon_uid]'
+		'label'             	=> __( 'StumbleUpon', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[stumbleupon_uid]'
 	) ) );	
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[stumbleupon_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Vimeo Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[vimeo_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_vimeo', array(
-		'label'             => __( 'Vimeo', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[vimeo_uid]'
+		'label'             	=> __( 'Vimeo', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[vimeo_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[vimeo_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add SoundCloud Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[yelp_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_yelp', array(
-		'label'             => __( 'Yelp', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[yelp_uid]'
+		'label'             	=> __( 'Yelp', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[yelp_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[yelp_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 	// Add Foursquare Setting
 
 	$wp_customize->add_setting( 'responsive_theme_options[foursquare_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option', 'transport' => 'postMessage' ));
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_foursquare', array(
-		'label'             => __( 'Foursquare', 'responsive' ),
-		'section'           => 'responsive_social_media',
-		'settings'          => 'responsive_theme_options[foursquare_uid]'
+		'label'             	=> __( 'Foursquare', 'responsive' ),
+		'section'           	=> 'responsive_social_media',
+		'settings'          	=> 'responsive_theme_options[foursquare_uid]'
 	) ) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[foursquare_uid]', array(
-		'selector' => 'ul.social-icons',
-		'container_inclusive' => true,
-		'render_callback' => 'responsive_get_social_icons',
+		'selector' 				=> 'ul.social-icons',
+		'container_inclusive' 	=> true,
+		'render_callback' 		=> 'responsive_get_social_icons',
 	) );
 
 /*--------------------------------------------------------------
@@ -454,7 +454,6 @@ $wp_customize->add_section( 'footer_section', array(
 		'priority'              => 30
 	) );
 	$wp_customize->add_setting( 'responsive_theme_options[copyright_textbox]',array( 'default' => __('Default copyright text','responsive'),'sanitize_callback' => 'wp_filter_nohtml_kses', 'type' => 'option' ) );
-
 	$wp_customize->add_control( 'res_copyright_textbox', array(
 		'label'                 => __( 'Copyright text', 'responsive' ),
 		'section'               => 'footer_section',
@@ -462,7 +461,7 @@ $wp_customize->add_section( 'footer_section', array(
 		'type'                  => 'text'
 	) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[copyright_textbox]', array(
-		'selector' => '.copyright',
+		'selector' 				=> '.copyright',
 	) );
 
 	$wp_customize->add_setting( 'responsive_theme_options[poweredby_link]', array( 'sanitize_callback' => 'responsive_sanitize_checkbox', 'type' => 'option' ) );
@@ -473,7 +472,7 @@ $wp_customize->add_section( 'footer_section', array(
 		'type'                  => 'checkbox'
 	) );
 	$wp_customize->selective_refresh->add_partial( 'responsive_theme_options[poweredby_link]', array(
-		'selector' => '.powered',
+		'selector' 				=> '.powered',
 	) );
 
 
